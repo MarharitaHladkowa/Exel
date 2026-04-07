@@ -7,7 +7,8 @@
   --f-light: #bfdbcc;
   --f-dark: #97c3ab;
   --font-main: "Montserrat", sans-serif;
-  --grid-step: 45px;
+  --grid-width: 64px; /* Шаг по горизонтали */
+  --grid-height: 40px; /* Шаг по вертикали */
 }
 
 * {
@@ -19,7 +20,7 @@
 body {
   font-family: var(--font-main);
   color: var(--dark);
-  background-color: #fff;
+  background-color: #f1f1f1;
   line-height: 1.5;
   overflow-x: hidden;
 }
@@ -27,10 +28,10 @@ body {
 /* --- 2. СЕКЦИЯ HERO И СЕТКА --- */
 .hero {
   position: relative;
-  min-height: 100vh;
+
   display: flex;
-  align-items: center;
-  background-color: #fff;
+
+  background-color: #f1f1f1;
 }
 
 .hero-grid-right {
@@ -40,9 +41,9 @@ body {
   width: 50%;
   height: 100%;
   background-image:
-    linear-gradient(to right, #edf1ed 1px, transparent 1px),
-    linear-gradient(to bottom, #edf1ed 2px, transparent 2px);
-  background-size: var(--grid-step) var(--grid-step);
+    linear-gradient(to right, #e7e7e7 1px, transparent 1px),
+    linear-gradient(to bottom, #e7e7e7 2px, transparent 2px);
+  background-size: var(--grid-width) var(--grid-height);
   background-position: -1px 0;
   z-index: 1;
 }
@@ -50,7 +51,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 112px;
   width: 100%;
   position: relative;
   z-index: 10;
@@ -60,6 +61,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 110px 0;
 }
 
 /* --- 3. КОНТЕНТ (ЛЕВАЯ ЧАСТЬ) --- */
@@ -118,8 +120,9 @@ h1 {
 
 /* --- 4. ФОРМА И ТАЙМЕР --- */
 .form-block {
-  flex: 0 0 440px;
-  transition: opacity 0.5s ease;
+  /* Теперь просто фиксируем ширину из макета */
+  flex: 0 0 488px;
+  z-index: 10;
 }
 
 .reg-form {
@@ -233,9 +236,21 @@ input.error {
   bottom: 5%;
   left: 42%;
 }
+.hero-decor-img {
+  position: absolute;
+  bottom: 0; /* Прижимаем к низу */
+  right: 0; /* Прижимаем к правому краю */
+  width: 312px;
+  height: 240px;
+  z-index: 1; /* Самый нижний слой декора */
+  pointer-events: none;
+}
+
+/* Формулы должны быть выше картинки */
 .formula {
   position: absolute;
   font-weight: 600;
+  z-index: 5;
 }
 .f-min {
   color: var(--f-light);
