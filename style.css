@@ -1,0 +1,311 @@
+/* --- 1. ОБЩИЕ НАСТРОЙКИ --- */
+:root {
+  --primary: #107c41;
+  --primary-hover: #0d6334;
+  --dark: #1b1b1b;
+  --gray: #4f4f4f;
+  --f-light: #bfdbcc;
+  --f-dark: #97c3ab;
+  --font-main: "Montserrat", sans-serif;
+  --grid-step: 45px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--dark);
+  background-color: #fff;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* --- 2. СЕКЦИЯ HERO И СЕТКА --- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+
+.hero-grid-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, #edf1ed 1px, transparent 1px),
+    linear-gradient(to bottom, #edf1ed 2px, transparent 2px);
+  background-size: var(--grid-step) var(--grid-step);
+  background-position: -1px 0;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- 3. КОНТЕНТ (ЛЕВАЯ ЧАСТЬ) --- */
+.content-block {
+  flex: 0 0 52%;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 40px;
+}
+
+.status-tags {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.tag {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tag-filled {
+  background: #e8f5e9;
+  color: var(--primary);
+}
+
+.tag-bordered {
+  border: 1px solid #eee;
+  background: #fff;
+}
+
+h1 {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-size: 18px;
+  color: var(--gray);
+  max-width: 480px;
+}
+
+/* Кнопка для мобилок (скрыта на десктопе) */
+#openModalBtn {
+  display: none;
+  width: fit-content;
+  padding: 15px 30px;
+}
+
+/* --- 4. ФОРМА И ТАЙМЕР --- */
+.form-block {
+  flex: 0 0 440px;
+  transition: opacity 0.5s ease;
+}
+
+.reg-form {
+  background: #fff;
+  padding: 40px;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0f0f0;
+}
+
+.reg-form h3 {
+  font-size: 26px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.unit {
+  text-align: center;
+}
+.unit span {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--primary);
+}
+.unit label {
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.divider {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+  padding-bottom: 15px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+input.error {
+  border-color: #ff4d4d !important;
+  background-color: #fff8f8;
+}
+
+.phone-wrapper {
+  position: relative;
+}
+.phone-wrapper .flag {
+  position: absolute;
+  left: 15px;
+  top: 16px;
+}
+.phone-wrapper input {
+  padding-left: 45px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.submit-btn {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: var(--primary-hover);
+}
+
+/* --- 5. ДЕКОР --- */
+.hero-decor-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.vector-decor {
+  position: absolute;
+  bottom: 5%;
+  left: 42%;
+}
+.formula {
+  position: absolute;
+  font-weight: 600;
+}
+.f-min {
+  color: var(--f-light);
+  top: 12%;
+  left: 45%;
+  transform: rotate(-16deg);
+}
+.f-sumif {
+  color: var(--f-dark);
+  top: 18%;
+  right: 8%;
+}
+.f-average {
+  color: var(--f-light);
+  bottom: 18%;
+  left: 32%;
+  transform: rotate(30deg);
+}
+
+/* --- 6. МОДАЛКА --- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+}
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #333;
+}
+
+/* --- 7. АДАПТИВНОСТЬ --- */
+@media (max-width: 992px) {
+  .hero-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+  .content-block {
+    flex: 0 0 100%;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-grid-right {
+    width: 100%;
+    opacity: 0.3;
+  }
+  .form-block {
+    display: none;
+  }
+  #openModalBtn {
+    display: block;
+  }
+}
