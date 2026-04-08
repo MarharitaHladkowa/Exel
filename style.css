@@ -17,10 +17,13 @@
   padding: 0;
 }
 
+html,
 body {
+  background-color: #f1f1f1;
+  margin: 0;
+  padding: 0;
   font-family: var(--font-main);
   color: var(--dark);
-  background-color: #f1f1f1;
   line-height: 1.5;
   overflow-x: hidden;
 }
@@ -28,10 +31,11 @@ body {
 /* --- 2. СЕКЦИЯ HERO И СЕТКА --- */
 .hero {
   position: relative;
-
-  display: flex;
-
+  /* Убираем display: flex отсюда, если он мешает центрированию контейнера */
   background-color: #f1f1f1;
+  min-height: 100vh; /* Секция всегда на всю высоту экрана */
+  display: flex;
+  flex-direction: column;
 }
 
 .hero-grid-right {
@@ -61,7 +65,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 110px 0;
+  flex-grow: 1; /* Это заставит обертку занять всё свободное место в .hero */
+  padding: 110px 0; /* Твои отступы по макету */
 }
 
 /* --- 3. КОНТЕНТ (ЛЕВАЯ ЧАСТЬ) --- */
@@ -233,8 +238,32 @@ input.error {
 }
 .vector-decor {
   position: absolute;
-  bottom: 5%;
-  left: 42%;
+  /* Твой вычисленный "красный квадрат" из Figma */
+  width: 103.67px;
+  height: 103.85px;
+
+  left: 664px;
+  top: 520px;
+
+  /* Это скроет лишние части, которые создают прокрутку */
+  overflow: hidden;
+  z-index: 5;
+}
+
+.arrow-svg {
+  /* Устанавливаем ЖЕСТКО 98x57, чтобы браузер не фантазировал */
+  width: 98px !important; /* Чистая ширина из SVG */
+  height: 57px !important; /* Чистая высота из SVG */
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  /* Используем translate, чтобы отцентрировать, и rotate из макета */
+  transform: translate(-50%, -50%) rotate(-18.94deg);
+
+  /* Точка вращения - строго центр */
+  transform-origin: center center;
 }
 .hero-decor-img {
   position: absolute;
@@ -249,15 +278,39 @@ input.error {
 /* Формулы должны быть выше картинки */
 .formula {
   position: absolute;
-  font-weight: 600;
+
   z-index: 5;
 }
+
 .f-min {
-  color: var(--f-light);
-  top: 12%;
-  left: 45%;
-  transform: rotate(-16deg);
+  /* 1. Оживляем ширину и высоту */
+  display: inline-block;
+  position: absolute;
+
+  /* 2. Твои точные данные из Figma */
+  top: 40px;
+  left: 543px;
+  width: 176px;
+  height: 28px;
+
+  /* 3. Оформление */
+  color: #bfdbcc;
+  font-family: var(--font-main);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  white-space: nowrap;
+
+  /* 4. Поворот (минус для наклона влево) */
+  transform: rotate(16deg);
+  transform-origin: left center;
+
+  /* 5. Безопасность */
+  z-index: 5;
+  pointer-events: none; /* Чтобы формула не мешала кликать по кнопкам */
 }
+
 .f-sumif {
   color: var(--f-dark);
   top: 18%;
