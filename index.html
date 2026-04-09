@@ -15,40 +15,35 @@
   <body>
     <section class="hero">
       <div class="hero-grid-right"></div>
+
+   
+       
       <div class="hero-decor-layer">
-        <div class="vector-decor">
-          <svg
-            width="98"
-            height="57"
-            viewBox="0 0 98 57"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="arrow-svg"
-          >
-            <path
-              d="M91.4901 36.7395L80.0107 28.0045C61.1625 51.353 29.0677 62.0746 0.138177 53.0337C-0.859159 52.7246 3.85637 42.8525 4.24558 42.0569C4.80392 40.9377 8.93371 31.6361 10.4557 32.1087C31.4067 38.6519 56.05 34.5819 74.1825 22.2875L63.4904 13.7728L97.6694 -1.46789e-05L91.4901 36.7395Z"
-              fill="#0F7C41"
-            />
-          </svg>
-        </div>
+      <div class="vector-decor">
+   <img src="images/Vector.svg" alt="Arrow" class="arrow-svg">
+</div>
         <img
           src="images/1411.jpg"
           alt="Excel Dashboard"
           class="hero-decor-img"
         />
-
-        <span class="formula f-min">f(x) = MIN(E2:E5)</span>
-
-        <span class="formula f-sumif">SUMIF(C3:C12, "70,000")</span>
-        <span class="formula f-average">AVERAGE(B2+D2)</span>
-      </div>
+    <ul class="formula-list">
+  <li class="formula f-min">f(x) = MIN(E2:E5)</li>
+ <li class="formula f-sum-ab">
+  <img src="images/SUM(A1+B4).svg" alt="SUM formula decor">
+</li>
+  <li class="formula f-sumif">SUMIF(C3:C12, "70,000")</li>
+  <li class="formula f-average">AVERAGE(B2+D2)</li>
+</ul>
 
       <div class="container hero-wrapper">
         <div class="content-block">
-          <div class="logo">GO IT</div>
+          <div class="logo">
+  <img src="images/logo.svg" alt="GO IT Logo">
+</div>
           <div class="status-tags">
-            <span class="tag tag-filled">Безоплатний вебінар</span>
-            <span class="tag tag-bordered">Старт: 10 січня 19:30</span>
+            <span class="tag tag-first"><span>Безоплатний вебінар</span></span>
+            <span class="tag tag-bordered">Старт: <span>  10 січня 19:30</span></span>
           </div>
           <h1>Навчіться створювати Excel-таблиці на pro-рівні</h1>
           <p class="description">
@@ -64,8 +59,9 @@
           </button>
         </div>
 
-        <div class="form-block" id="main-form-slot"></div>
+       <div class="form-block" id="main-form-slot"></div>
       </div>
+      
     </section>
 
     <div id="modal" class="modal-overlay" style="display: none">

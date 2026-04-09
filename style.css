@@ -7,8 +7,8 @@
   --f-light: #bfdbcc;
   --f-dark: #97c3ab;
   --font-main: "Montserrat", sans-serif;
-  --grid-width: 64px; /* Шаг по горизонтали */
-  --grid-height: 40px; /* Шаг по вертикали */
+  --grid-width: 116.03px;
+  --grid-height: 40.52px;
 }
 
 * {
@@ -31,11 +31,11 @@ body {
 /* --- 2. СЕКЦИЯ HERO И СЕТКА --- */
 .hero {
   position: relative;
-  /* Убираем display: flex отсюда, если он мешает центрированию контейнера */
-  background-color: #f1f1f1;
-  min-height: 100vh; /* Секция всегда на всю высоту экрана */
-  display: flex;
-  flex-direction: column;
+  background-color: #f1f1f1; /* Твой основной фон */
+  min-height: 100vh; /* На всю высоту экрана */
+  width: 100%;
+  overflow: hidden; /* Чтобы декор не создавал скролл */
+  display: block; /* Убедись, что здесь нет flex, он теперь в .container */
 }
 
 .hero-grid-right {
@@ -44,76 +44,184 @@ body {
   right: 0;
   width: 50%;
   height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden; /* Важно, чтобы сетка не вылезала за пределы */
+
   background-image:
     linear-gradient(to right, #e7e7e7 1px, transparent 1px),
-    linear-gradient(to bottom, #e7e7e7 2px, transparent 2px);
-  background-size: var(--grid-width) var(--grid-height);
-  background-position: -1px 0;
-  z-index: 1;
-}
+    linear-gradient(to bottom, #e7e7e7 1px, transparent 1px);
 
+  /* Твои вычисленные размеры сетки */
+  background-size: 116.03px 40.52px;
+  background-repeat: repeat;
+
+  /* СДВИГ: 74.53px — это расстояние до первой вертикальной линии.
+     0 — это начало сетки по вертикали. */
+  background-position: 74.53px 0;
+}
 .container {
-  max-width: 1200px;
+  display: grid;
+  /* Десктоп: 12 колонок, gap 32px */
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 32px;
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 112px;
-  width: 100%;
-  position: relative;
-  z-index: 10;
+  position: relative; /* Чтобы форма-абсолют была внутри */
 }
 
 .hero-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-grow: 1; /* Это заставит обертку занять всё свободное место в .hero */
-  padding: 110px 0; /* Твои отступы по макету */
-}
-
-/* --- 3. КОНТЕНТ (ЛЕВАЯ ЧАСТЬ) --- */
-.content-block {
-  flex: 0 0 52%;
+  padding-top: 40px;
 }
 
 .logo {
   font-size: 24px;
   font-weight: 900;
-  margin-bottom: 40px;
+  margin-bottom: 88px;
+}
+.logo,
+.status-tags,
+h1,
+.description {
+  grid-column: 1 / 9; /* Занимают левую часть экрана */
+  position: relative;
+  z-index: 5;
 }
 
+/* --- ФОРМА (сама по себе) --- */
+.form-block {
+  position: absolute;
+  top: 110px;
+  right: 112px; /* Прижата к правому краю контейнера */
+  width: 488px;
+  z-index: 20; /* Выше всех, перекрывает сетку и декор */
+}
+
+/* --- АДАПТИВ ПО ТВОИМ ДАННЫМ --- */
+
+/* Планшет */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+    column-gap: 32px;
+    padding: 0 40px;
+  }
+
+  .logo,
+  .status-tags,
+  h1,
+  .description {
+    grid-column: 1 / 5;
+  }
+
+  /* На планшете форма всё еще может быть абсолютной, 
+     если она не перекрывает текст. Если перекрывает — ставим static */
+  .form-block {
+    position: absolute;
+    right: 40px;
+    width: 400px; /* Уменьшаем размер под планшет */
+  }
+}
+
+/* Телефон */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px; /* Твой Gap из Inspect */
+    padding: 0 20px;
+  }
+
+  /* На телефоне форма встает в поток под текст */
+  .form-block {
+    position: static;
+    grid-column: 1 / 5;
+    width: 100%;
+    margin-top: 40px;
+  }
+}
 .status-tags {
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 30px;
+  margin-bottom: 40px;
 }
-
-.tag {
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.tag-filled {
-  background: #e8f5e9;
-  color: var(--primary);
-}
-
+/* Базовый класс, названия не меняем */
+/* Основной контейнер */
+.tag,
 .tag-bordered {
-  border: 1px solid #eee;
-  background: #fff;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: 0.4px solid #0f7c41;
+  font-family: var(--font-main);
+  font-size: 16px;
+  line-height: 150%;
+  color: #0f7c41;
+  background: transparent !important;
+  overflow: visible;
 }
 
+/* Спан, который внутри */
+.tag span {
+  font-weight: 700;
+  /* Важно: делаем его позиционированным, чтобы привязать к нему правые углы */
+  position: static;
+  margin-left: 8px;
+}
+.tag-first {
+  font-weight: 500;
+}
+/* Базовый стиль для всех 4 квадратов */
+.tag::before,
+.tag::after,
+.tag span::before,
+.tag span::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #0f7c41;
+  z-index: 10;
+}
+
+/* --- ЛЕВЫЕ УГЛЫ (привязаны к .tag) --- */
+.tag::before {
+  top: -2.2px;
+  left: -2.2px;
+}
+.tag::after {
+  bottom: -2.2px;
+  left: -2.2px;
+}
+
+/* --- ПРАВЫЕ УГЛЫ (привязаны к ПРАВОМУ краю .tag) --- */
+/* Мы используем span, но заставляем его псевдоэлементы прыгнуть в правый угол родителя */
+.tag span::before {
+  top: -2.2px;
+  right: -2.2px;
+}
+.tag span::after {
+  bottom: -2.2px;
+  right: -2.2px;
+}
 h1 {
-  font-size: 52px;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 24px;
+  font-size: 56px; /* Из макета */
+  font-weight: 700;
+  line-height: 1.21; /* 121% */
+  color: #010101;
+  width: 624px; /* Жесткая ширина для переноса строк */
+  margin-bottom: 40px; /* Расстояние до описания */
 }
 
 .description {
-  font-size: 18px;
-  color: var(--gray);
-  max-width: 480px;
+  font-size: 20px;
+  line-height: 1.4; /* 140% */
+  color: #010101;
+  max-width: 554px;
+  font-weight: 400;
 }
 
 /* Кнопка для мобилок (скрыта на десктопе) */
@@ -124,18 +232,20 @@ h1 {
 }
 
 /* --- 4. ФОРМА И ТАЙМЕР --- */
-.form-block {
-  /* Теперь просто фиксируем ширину из макета */
-  flex: 0 0 488px;
-  z-index: 10;
-}
 
 .reg-form {
   background: #fff;
-  padding: 40px;
-  border-radius: 4px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-  border: 1px solid #f0f0f0;
+
+  width: 488px;
+  height: 580px;
+  padding: 52px; /* Внутренние отступы как в Figma */
+
+  box-shadow: 0 20px 40px rgba(15, 124, 65, 0.06); /* Твоя тень */
+
+  /* Чтобы содержимое (таймер, инпуты) распределялось красиво */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .reg-form h3 {
@@ -229,150 +339,262 @@ input.error {
   background: var(--primary-hover);
 }
 
-/* --- 5. ДЕКОР --- */
 .hero-decor-layer {
   position: absolute;
+
   inset: 0;
+
   z-index: 2;
+
   pointer-events: none;
 }
+
+/* --- 5. ДЕКОР --- */
+
 .vector-decor {
   position: absolute;
-  /* Твой вычисленный "красный квадрат" из Figma */
-  width: 103.67px;
-  height: 103.85px;
 
-  left: 664px;
-  top: 520px;
+  /* Используем размеры самого SVG файла, чтобы рамка была "в облипку" */
 
-  /* Это скроет лишние части, которые создают прокрутку */
-  overflow: hidden;
+  width: 98px;
+
+  height: 57px;
+
+  /* Твои вычисленные координаты из Figma */
+
+  left: 660px;
+
+  top: 547px;
+
   z-index: 5;
+
+  /* Убираем overflow: hidden, он больше не нужен */
 }
 
 .arrow-svg {
-  /* Устанавливаем ЖЕСТКО 98x57, чтобы браузер не фантазировал */
-  width: 98px !important; /* Чистая ширина из SVG */
-  height: 57px !important; /* Чистая высота из SVG */
+  /* Растягиваем картинку на весь контейнер 98x57 */
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  width: 100% !important;
 
-  /* Используем translate, чтобы отцентрировать, и rotate из макета */
-  transform: translate(-50%, -50%) rotate(-18.94deg);
+  height: 100% !important;
 
-  /* Точка вращения - строго центр */
-  transform-origin: center center;
+  display: block;
+
+  /* УБИРАЕМ: transform, rotate и transform-origin */
+
+  /* Твой SVG уже наклонен внутри файла, поэтому здесь просто 0 */
+
+  transform: none;
 }
+
 .hero-decor-img {
   position: absolute;
+
   bottom: 0; /* Прижимаем к низу */
+
   right: 0; /* Прижимаем к правому краю */
+
   width: 312px;
+
   height: 240px;
+
   z-index: 1; /* Самый нижний слой декора */
+
   pointer-events: none;
 }
 
 /* Формулы должны быть выше картинки */
+
 .formula {
   position: absolute;
 
   z-index: 5;
 }
 
+.formula-list li {
+  /* 2. Чтобы браузер не считал его высоту как блок */
+
+  height: auto;
+
+  position: absolute; /* Все формулы будут летать */
+
+  list-style: none;
+
+  /* 3. Гарантия, что лишние углы не создадут скролл */
+}
+
+.formula-list {
+  list-style: none;
+
+  padding: 0;
+
+  margin: 0;
+
+  /* Важно: если ul лежит в hero-decor-layer,
+
+     убедись, что у него самого нет размеров, которые мешают */
+}
+
 .f-min {
   /* 1. Оживляем ширину и высоту */
+
   display: inline-block;
+
   position: absolute;
 
   /* 2. Твои точные данные из Figma */
+
   top: 40px;
+
   left: 543px;
-  width: 176px;
-  height: 28px;
+
+  width: max-content; /* Вместо 176px, чтобы рамка была только по тексту */
+
+  height: auto;
 
   /* 3. Оформление */
+
   color: #bfdbcc;
+
   font-family: var(--font-main);
+
   font-style: italic;
+
   font-weight: 500;
+
   font-size: 20px;
+
   line-height: 140%;
+
   white-space: nowrap;
 
   /* 4. Поворот (минус для наклона влево) */
+
   transform: rotate(16deg);
+
   transform-origin: left center;
 
   /* 5. Безопасность */
+
   z-index: 5;
+
   pointer-events: none; /* Чтобы формула не мешала кликать по кнопкам */
+}
+
+.f-sum-ab {
+  /* Координаты из макета */
+
+  left: 630px;
+  top: 732px;
+
+  /* Размеры четко как в Figma */
+
+  width: 127px;
+
+  z-index: 5;
+
+  pointer-events: none; /* Чтобы не мешало кликать по форме */
+}
+
+.f-sum-ab img {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  /* Поворот больше НЕ НУЖЕН, он уже внутри SVG */
 }
 
 .f-sumif {
   color: var(--f-dark);
+
   top: 18%;
+
   right: 8%;
 }
+
 .f-average {
   color: var(--f-light);
+
   bottom: 18%;
+
   left: 32%;
+
   transform: rotate(30deg);
 }
 
 /* --- 6. МОДАЛКА --- */
+
 .modal-overlay {
   display: none;
+
   position: fixed;
+
   inset: 0;
+
   background: rgba(0, 0, 0, 0.7);
+
   z-index: 1000;
+
   justify-content: center;
+
   align-items: center;
+
   padding: 20px;
 }
+
 .modal-content {
   background: #fff;
+
   padding: 20px;
+
   border-radius: 8px;
+
   position: relative;
+
   max-width: 480px;
+
   width: 100%;
 }
+
 .close-modal {
   position: absolute;
+
   top: 10px;
+
   right: 15px;
+
   font-size: 32px;
+
   border: none;
+
   background: none;
+
   cursor: pointer;
+
   color: #333;
 }
 
 /* --- 7. АДАПТИВНОСТЬ --- */
-@media (max-width: 992px) {
+
+@media (max-width: 768px) {
   .hero-wrapper {
-    flex-direction: column;
     text-align: center;
   }
+
   .content-block {
     flex: 0 0 100%;
+
     margin-bottom: 40px;
+    margin-top: 40px;
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
   }
-  .hero-grid-right {
-    width: 100%;
-    opacity: 0.3;
-  }
-  .form-block {
-    display: none;
-  }
+
   #openModalBtn {
     display: block;
   }
