@@ -19,6 +19,14 @@
    
        
       <div class="hero-decor-layer">
+        <div class="decor-squares">
+  <div class="sq sq-sm sq-pos-1"></div>
+  <div class="sq sq-sm sq-pos-2"></div>
+  <div class="sq sq-sm sq-pos-3"></div>
+
+  <div class="sq sq-lg sq-pos-4"></div>
+  <div class="sq sq-lg sq-pos-5"></div>
+</div>
       <div class="vector-decor">
    <img src="images/Vector.svg" alt="Arrow" class="arrow-svg">
 </div>
@@ -33,7 +41,12 @@
   <img src="images/SUM(A1+B4).svg" alt="SUM formula decor">
 </li>
   <li class="formula f-sumif">SUMIF(C3:C12, "70,000")</li>
-  <li class="formula f-average">AVERAGE(B2+D2)</li>
+  <li class="formula f-average">
+  <img src="images/AVERAGE(B2+D2).svg" alt="AVERAGE formula decor">
+</li>
+<li class="formula f-layer">
+  <img src="images/Layer_1.svg" alt="Layer formula decor">
+</li>
 </ul>
 
       <div class="container hero-wrapper">
@@ -71,48 +84,34 @@
       </div>
     </div>
 
-    <template id="form-template">
-      <form class="reg-form">
-        <h3>Реєструйся просто зараз</h3>
+   <template id="form-template">
+  <form class="reg-form"> <h3>Реєструйся просто зараз</h3>
 
-        <div class="countdown">
-          <div class="unit">
-            <span class="days">00</span><label>днів</label>
-          </div>
-          <span class="divider">:</span>
-          <div class="unit">
-            <span class="hours">00</span><label>годин</label>
-          </div>
-          <span class="divider">:</span>
-          <div class="unit">
-            <span class="minutes">00</span><label>хвилин</label>
-          </div>
-          <span class="divider">:</span>
-          <div class="unit">
-            <span class="seconds">00</span><label>секунд</label>
-          </div>
-        </div>
+    <div class="countdown">
+      <div class="unit"><span class="days">00</span><label>днів</label></div>
+      <span class="divider">:</span>
+      <div class="unit"><span class="hours">00</span><label>годин</label></div>
+      <span class="divider">:</span>
+      <div class="unit"><span class="minutes">00</span><label>хвилин</label></div>
+      <span class="divider">:</span>
+      <div class="unit seconds-green"><span class="seconds">00</span><label>секунд</label></div>
+    </div> <div class="input-group">
+      <input type="text" name="name" placeholder="Введіть своє ім’я" />
+      <input type="email" name="email" placeholder="Введіть свій E-mail" />
+      <div class="phone-wrapper">
+        <img src="images/flag.svg" alt="flag" class="flag-svg">
+        <input type="tel" name="phone" placeholder="+380 95 -- -- ---" />
+      </div>
+    </div>
 
-        <div class="input-group">
-          <input type="text" name="name" placeholder="Введіть своє ім’я" />
-          <input type="email" name="email" placeholder="Введіть свій E-mail" />
-          <div class="phone-wrapper">
-            <span class="flag">🇺🇦</span>
-            <input type="tel" name="phone" placeholder="+380 95 --- -- --" />
-          </div>
-        </div>
+    <label class="checkbox-container">
+      <input type="checkbox" name="agree" />
+      <span class="checkmark"></span>
+      <span class="text">Згоден з <a href="#">Політикою конфіденційності</a> та <a href="#">Умови користування послугами</a></span>
+    </label>
 
-        <label class="checkbox-container">
-          <input type="checkbox" name="agree" checked />
-          <span class="checkmark"></span>
-          <span class="text"
-            >Згоден з <a href="#">Політикою конфіденційності</a></span
-          >
-        </label>
-
-        <button type="submit" class="submit-btn">Зареєструватися</button>
-      </form>
-    </template>
+    <button type="submit" class="submit-btn">Зареєструватися</button>
+  </form> </template>
 
     <script src="script.js"></script>
   </body>

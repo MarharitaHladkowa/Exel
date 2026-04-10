@@ -1,16 +1,18 @@
-/* --- 1. ОБЩИЕ НАСТРОЙКИ --- */
 :root {
   --primary: #107c41;
   --primary-hover: #0d6334;
   --dark: #1b1b1b;
   --gray: #4f4f4f;
   --f-light: #bfdbcc;
+
   --f-dark: #97c3ab;
   --font-main: "Montserrat", sans-serif;
+
+  --second-family: "Inter", sans-serif;
+
   --grid-width: 116.03px;
   --grid-height: 40.52px;
 }
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -31,13 +33,12 @@ body {
 /* --- 2. СЕКЦИЯ HERO И СЕТКА --- */
 .hero {
   position: relative;
-  background-color: #f1f1f1; /* Твой основной фон */
-  min-height: 100vh; /* На всю высоту экрана */
+  background-color: #f1f1f1;
+  min-height: 100vh;
   width: 100%;
-  overflow: hidden; /* Чтобы декор не создавал скролл */
-  display: block; /* Убедись, что здесь нет flex, он теперь в .container */
+  overflow: hidden;
+  display: block;
 }
-
 .hero-grid-right {
   position: absolute;
   top: 0;
@@ -45,28 +46,24 @@ body {
   width: 50%;
   height: 100%;
   z-index: 1;
+
   pointer-events: none;
-  overflow: hidden; /* Важно, чтобы сетка не вылезала за пределы */
-
+  overflow: hidden;
   background-image:
-    linear-gradient(to right, #e7e7e7 1px, transparent 1px),
-    linear-gradient(to bottom, #e7e7e7 1px, transparent 1px);
-
-  /* Твои вычисленные размеры сетки */
-  background-size: 116.03px 40.52px;
+    linear-gradient(to right, #e7e7e7 2px, transparent 2px),
+    linear-gradient(to bottom, #e7e7e7 2px, transparent 2px);
   background-repeat: repeat;
-
-  /* СДВИГ: 74.53px — это расстояние до первой вертикальной линии.
-     0 — это начало сетки по вертикали. */
-  background-position: 74.53px 0;
+  transform: translateY(-8px);
+  background-position: -76.79px 0;
+  background-size: var(--grid-width) var(--grid-height);
 }
+
 .container {
   display: grid;
-  /* Десктоп: 12 колонок, gap 32px */
   grid-template-columns: repeat(12, 1fr);
   column-gap: 32px;
   position: relative;
-  z-index: 2;
+  z-index: 10;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 112px;
@@ -82,73 +79,35 @@ body {
   font-weight: 900;
   margin-bottom: 88px;
 }
+
 .logo,
 .status-tags,
 h1,
 .description {
-  grid-column: 1 / 9; /* Занимают левую часть экрана */
+  grid-column: 1 / 9;
   position: relative;
   z-index: 5;
 }
 
-/* --- ФОРМА (сама по себе) --- */
 .form-block {
   position: absolute;
   top: 110px;
-  right: 112px; /* Прижата к правому краю контейнера */
+  right: 112px;
   width: 488px;
-  z-index: 20; /* Выше всех, перекрывает сетку и декор */
+  z-index: 100;
 }
 
-/* --- АДАПТИВ ПО ТВОИМ ДАННЫМ --- */
-
-/* Планшет */
-@media (max-width: 1024px) {
-  .container {
-    grid-template-columns: repeat(4, 1fr); /* 4 колонки */
-    column-gap: 32px;
-    padding: 0 40px;
-  }
-
-  .logo,
-  .status-tags,
-  h1,
-  .description {
-    grid-column: 1 / 5;
-  }
-
-  /* На планшете форма всё еще может быть абсолютной, 
-     если она не перекрывает текст. Если перекрывает — ставим static */
-  .form-block {
-    position: absolute;
-    right: 40px;
-    width: 400px; /* Уменьшаем размер под планшет */
-  }
+#main-form-slot,
+#modal-form-slot {
+  pointer-events: all !important;
 }
 
-/* Телефон */
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 20px; /* Твой Gap из Inspect */
-    padding: 0 20px;
-  }
-
-  /* На телефоне форма встает в поток под текст */
-  .form-block {
-    position: static;
-    grid-column: 1 / 5;
-    width: 100%;
-    margin-top: 40px;
-  }
-}
 .status-tags {
   display: flex;
   gap: 30px;
   margin-bottom: 40px;
 }
-/* Базовый класс, названия не меняем */
-/* Основной контейнер */
+
 .tag,
 .tag-bordered {
   position: relative;
@@ -162,176 +121,364 @@ h1,
   color: #0f7c41;
   background: transparent !important;
   overflow: visible;
+  font-weight: 500;
 }
-
-/* Спан, который внутри */
 .tag span {
   font-weight: 700;
-  /* Важно: делаем его позиционированным, чтобы привязать к нему правые углы */
   position: static;
   margin-left: 8px;
 }
-.tag-first {
-  font-weight: 500;
+.tag-first span {
+  font-weight: 500 !important;
 }
+
+.tag-first {
+  font-family: var(--font-main);
+}
+
 /* Базовый стиль для всех 4 квадратов */
+
 .tag::before,
 .tag::after,
 .tag span::before,
 .tag span::after {
   content: "";
+
   position: absolute;
+
   width: 4px;
+
   height: 4px;
+
   background-color: #0f7c41;
+
   z-index: 10;
 }
 
 /* --- ЛЕВЫЕ УГЛЫ (привязаны к .tag) --- */
+
 .tag::before {
   top: -2.2px;
+
   left: -2.2px;
 }
+
 .tag::after {
   bottom: -2.2px;
+
   left: -2.2px;
 }
 
 /* --- ПРАВЫЕ УГЛЫ (привязаны к ПРАВОМУ краю .tag) --- */
+
 /* Мы используем span, но заставляем его псевдоэлементы прыгнуть в правый угол родителя */
+
 .tag span::before {
   top: -2.2px;
+
   right: -2.2px;
 }
+
 .tag span::after {
   bottom: -2.2px;
+
   right: -2.2px;
 }
+
 h1 {
-  font-size: 56px; /* Из макета */
+  font-size: 56px;
   font-weight: 700;
-  line-height: 1.21; /* 121% */
+  line-height: 1.21;
   color: #010101;
-  width: 624px; /* Жесткая ширина для переноса строк */
-  margin-bottom: 40px; /* Расстояние до описания */
+  width: 624px;
+  margin-bottom: 40px;
+  font-family: var(--font-main) !important;
 }
 
 .description {
   font-size: 20px;
-  line-height: 1.4; /* 140% */
+  line-height: 1.4;
   color: #010101;
   max-width: 554px;
   font-weight: 400;
+  width: fit-content;
+  font-family: var(--font-main) !important;
 }
 
-/* Кнопка для мобилок (скрыта на десктопе) */
 #openModalBtn {
   display: none;
+
   width: fit-content;
+
   padding: 15px 30px;
 }
 
 /* --- 4. ФОРМА И ТАЙМЕР --- */
 
+.text {
+  font-family: var(--font-main);
+
+  font-weight: 400;
+
+  font-size: 12px;
+
+  line-height: 133%;
+
+  color: #010101;
+}
+
+.text a {
+  color: #3577f7;
+
+  text-decoration: none; /* Убирает подчеркивание */
+}
+
 .reg-form {
   background: #fff;
 
+  font-family: var(--font-main);
+
   width: 488px;
-  height: 580px;
+
   padding: 52px; /* Внутренние отступы как в Figma */
 
-  box-shadow: 0 20px 40px rgba(15, 124, 65, 0.06); /* Твоя тень */
+  box-shadow: 0 0 20px 0 rgba(15, 124, 65, 0.2);
 
   /* Чтобы содержимое (таймер, инпуты) распределялось красиво */
+
   display: flex;
+
   flex-direction: column;
-  justify-content: space-between;
+
+  justify-content: flex-start;
 }
 
 .reg-form h3 {
-  font-size: 26px;
-  font-weight: 800;
+  font-size: 28px;
+
+  font-weight: 700;
+
   text-align: center;
-  margin-bottom: 25px;
+
+  margin-bottom: 24px;
+
+  line-height: 114%;
+
+  text-align: center;
+
+  color: #010101;
 }
 
 .countdown {
   display: flex;
+
   justify-content: center;
-  align-items: center;
+
+  align-items: baseline;
+
   gap: 10px;
-  margin-bottom: 30px;
+
+  margin-bottom: 24px;
 }
 
 .unit {
   text-align: center;
 }
+
 .unit span {
   display: block;
+
   font-size: 32px;
-  font-weight: 800;
-  color: var(--primary);
+
+  font-weight: 700;
+
+  color: #010101;
+
+  font-family: var(--font-main);
+
+  line-height: 113%;
+
+  text-align: right;
 }
+
 .unit label {
-  font-size: 10px;
-  color: #999;
+  font-weight: 600;
+
+  font-size: 8px;
+
+  color: #010101;
+
   text-transform: uppercase;
+
+  display: block;
+
+  text-align: center;
 }
 
 .divider {
   font-size: 28px;
+
   font-weight: 800;
-  color: var(--primary);
+
+  color: rgba(1, 1, 1, 0.2);
+
   padding-bottom: 15px;
+}
+
+.unit.seconds-green span {
+  color: #0f7c41;
 }
 
 .input-group input {
   width: 100%;
-  padding: 16px;
-  border: 1px solid #eee;
-  border-radius: 4px;
-  margin-bottom: 12px;
-  font-family: inherit;
-  transition: border-color 0.2s;
+
+  padding: 12px 16px;
+
+  background: #f5f5f5;
+
+  margin-bottom: 20px;
+
+  font-family: var(--font-main);
+
+  height: 48px;
+
+  border: none;
+
+  outline: none;
+
+  font-size: 16px;
+
+  line-height: 150%;
+
+  color: #767b8e;
 }
 
-input.error {
+.input-group input.error,
+.phone-wrapper input.error {
+  border: 1px solid #ff4d4d !important;
+
+  background-color: #fff8f8 !important;
+
+  outline: none;
+}
+
+.checkbox-container input.error {
+  outline: 2px solid #ff4d4d !important;
+
   border-color: #ff4d4d !important;
-  background-color: #fff8f8;
+}
+
+.input-group .phone-wrapper {
+  margin-bottom: 0 !important;
 }
 
 .phone-wrapper {
   position: relative;
+
+  width: 100%;
 }
-.phone-wrapper .flag {
+
+.phone-wrapper .flag-svg {
   position: absolute;
+
   left: 15px;
+
   top: 16px;
 }
+
+.flag-svg {
+  width: 24px;
+
+  height: 16px;
+}
+
 .phone-wrapper input {
   padding-left: 45px;
 }
 
 .checkbox-container {
   display: flex;
+
   align-items: flex-start;
+
   gap: 10px;
-  margin-top: 15px;
+
   cursor: pointer;
+
   font-size: 13px;
+
+  margin-bottom: 32px;
+
+  position: relative;
+
+  z-index: 5;
+
+  pointer-events: auto !important;
+
+  z-index: 999; /* Вытаскиваем его на самый верх */
+}
+
+.checkbox-container input {
+  appearance: none; /* Убираем стандартный синий стиль */
+
+  -webkit-appearance: none;
+
+  width: 16px;
+
+  height: 16px;
+
+  border: 1px solid #0f7c41; /* Зелена рамка з макета */
+
+  /* ЦЕ РОБИТЬ ЙОГО ПРОЗОРИМ, ЯК НА МАКЕТІ */
+
+  background-color: transparent !important;
+
+  flex-shrink: 0;
+
+  cursor: pointer;
+
+  position: relative;
+}
+
+.checkbox-container input:checked {
+  background-color: transparent !important;
+
+  /* ЗЕЛЕНА ГАЛОЧКА через SVG (fill='%230f7c41') */
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230f7c41'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+
+  background-size: 12px;
+
+  background-repeat: no-repeat;
+
+  background-position: center;
 }
 
 .submit-btn {
   width: 100%;
+
   background: var(--primary);
+
   color: #fff;
+
   border: none;
-  padding: 20px;
+
+  padding: 20px 24px;
+
   font-size: 16px;
+
   font-weight: 700;
-  border-radius: 4px;
+
+  line-height: 150%;
+
   cursor: pointer;
-  margin-top: 20px;
+
+  text-align: center;
+
+  height: 64px;
+
+  font-family: var(--font-main);
+
   transition: background 0.3s;
 }
 
@@ -344,7 +491,7 @@ input.error {
 
   inset: 0;
 
-  z-index: 2;
+  z-index: 1;
 
   pointer-events: none;
 }
@@ -362,7 +509,7 @@ input.error {
 
   /* Твои вычисленные координаты из Figma */
 
-  left: 660px;
+  left: 650px;
 
   top: 547px;
 
@@ -408,7 +555,7 @@ input.error {
 .formula {
   position: absolute;
 
-  z-index: 5;
+  z-index: 3;
 }
 
 .formula-list li {
@@ -428,11 +575,73 @@ input.error {
 
   padding: 0;
 
+  overflow: hidden;
+
   margin: 0;
 
-  /* Важно: если ul лежит в hero-decor-layer,
+  position: absolute; /* Список должен лежать поверх декора, не создавая высоты */
 
-     убедись, что у него самого нет размеров, которые мешают */
+  inset: 0;
+
+  pointer-events: none;
+}
+
+.f-average {
+  position: absolute; /* Значно лівіше: з 22% ставимо 13-14%, щоб потрапити під "створювати" */
+
+  left: 17%;
+
+  /* Вище: піднімаємо до 32%, щоб формула була на рівні останнього рядка опису */
+
+  bottom: 8%;
+
+  /* Чіткий розмір з макета */
+
+  width: 223px;
+
+  transform: none !important;
+
+  z-index: 3;
+
+  pointer-events: none;
+}
+
+.f-average img {
+  width: 100%;
+
+  height: auto;
+
+  display: block;
+}
+
+.f-layer {
+  position: absolute;
+
+  /* Значно лівіше: з 22% ставимо 13-14%, щоб потрапити під "створювати" */
+
+  left: 0%;
+
+  /* Вище: піднімаємо до 32%, щоб формула була на рівні останнього рядка опису */
+
+  bottom: 4%;
+
+  /* Чіткий розмір з макета */
+
+  height: 46.15px;
+
+  transform: none !important;
+
+  z-index: 3;
+
+  pointer-events: none;
+}
+
+.f-layer img {
+  width: 100%;
+
+  height: auto;
+
+  display: block;
 }
 
 .f-min {
@@ -485,6 +694,7 @@ input.error {
   /* Координаты из макета */
 
   left: 630px;
+
   top: 732px;
 
   /* Размеры четко как в Figma */
@@ -507,27 +717,85 @@ input.error {
 }
 
 .f-sumif {
-  color: var(--f-dark);
+  position: absolute;
 
-  top: 18%;
+  top: 54px;
 
-  right: 8%;
+  width: 267px;
+
+  height: 16px;
+
+  left: 1220px;
+
+  font-family: var(--second-family);
+
+  font-weight: 500;
+
+  font-size: 20px;
+
+  line-height: 140%;
+
+  color: #97c3ab;
 }
 
-.f-average {
-  color: var(--f-light);
+.sq {
+  position: absolute;
 
-  bottom: 18%;
+  background-color: #0f7c41; /* Тот самый зеленый из Figma */
 
-  left: 32%;
+  z-index: 2;
 
-  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+/* Размеры */
+
+.sq-sm {
+  width: 10px;
+
+  height: 10px;
+}
+
+.sq-lg {
+  width: 20px;
+
+  height: 20px;
+}
+
+.sq-pos-1 {
+  top: 758px;
+
+  right: 616px;
+}
+
+.sq-pos-2 {
+  top: 312px;
+
+  right: 21px;
+}
+
+.sq-pos-3 {
+  top: 190px;
+
+  right: 90px;
+}
+
+.sq-pos-4 {
+  top: 428px;
+
+  right: 65px;
+}
+
+.sq-pos-5 {
+  top: 694px;
+
+  right: 428px;
 }
 
 /* --- 6. МОДАЛКА --- */
 
 .modal-overlay {
-  display: none;
+  display: none !important;
 
   position: fixed;
 
@@ -545,15 +813,7 @@ input.error {
 }
 
 .modal-content {
-  background: #fff;
-
-  padding: 20px;
-
-  border-radius: 8px;
-
   position: relative;
-
-  max-width: 480px;
 
   width: 100%;
 }
@@ -577,25 +837,42 @@ input.error {
 }
 
 /* --- 7. АДАПТИВНОСТЬ --- */
+@media (max-width: 767px) {
+  /* Все стили ниже сработают ТОЛЬКО если экран меньше 767px */
 
-@media (max-width: 768px) {
-  .hero-wrapper {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  #main-form-slot {
+    display: none !important; /* Спрячется только на мобилке */
+  }
+
+  #openModalBtn {
+    display: block !important; /* Появится только на мобилке */
+    margin: 30px auto;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  h1 {
+    font-size: 32px;
+    width: 100%;
     text-align: center;
   }
 
   .content-block {
-    flex: 0 0 100%;
-
-    margin-bottom: 40px;
-    margin-top: 40px;
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
   }
 
-  #openModalBtn {
-    display: block;
+  .formula-list,
+  .vector-decor,
+  .sq {
+    display: none;
   }
-}
+} /* <--- ЭТА СКОБКА ЗАКРЫВАЕТ МЕДИА-ЗАПРОС */
