@@ -16,102 +16,155 @@
     <section class="hero">
       <div class="hero-grid-right"></div>
 
-   
-       
       <div class="hero-decor-layer">
         <div class="decor-squares">
-  <div class="sq sq-sm sq-pos-1"></div>
-  <div class="sq sq-sm sq-pos-2"></div>
-  <div class="sq sq-sm sq-pos-3"></div>
-
-  <div class="sq sq-lg sq-pos-4"></div>
-  <div class="sq sq-lg sq-pos-5"></div>
-</div>
-      <div class="vector-decor">
-   <img src="images/Vector.svg" alt="Arrow" class="arrow-svg">
-</div>
+          <div class="sq sq-sm sq-pos-1"></div>
+          <div class="sq sq-sm sq-pos-2"></div>
+          <div class="sq sq-sm sq-pos-3"></div>
+          <div class="sq sq-lg sq-pos-4"></div>
+          <div class="sq sq-lg sq-pos-5"></div>
+        </div>
+        <div class="vector-decor">
+          <img src="images/Vector.svg" alt="Arrow" class="arrow-svg" />
+        </div>
         <img
           src="images/1411.jpg"
           alt="Excel Dashboard"
           class="hero-decor-img"
         />
-    <ul class="formula-list">
-  <li class="formula f-min">f(x) = MIN(E2:E5)</li>
- <li class="formula f-sum-ab">
-  <img src="images/SUM(A1+B4).svg" alt="SUM formula decor">
-</li>
-  <li class="formula f-sumif">SUMIF(C3:C12, "70,000")</li>
-  <li class="formula f-average">
-  <img src="images/AVERAGE(B2+D2).svg" alt="AVERAGE formula decor">
-</li>
-<li class="formula f-layer">
-  <img src="images/Layer_1.svg" alt="Layer formula decor">
-</li>
-</ul>
+        <ul class="formula-list">
+          <li class="formula f-min">f(x) = MIN(E2:E5)</li>
+          <li class="formula f-sum-ab">
+            <img src="images/SUM(A1+B4).svg" alt="SUM formula decor" />
+          </li>
+          <li class="formula f-sumif">SUMIF(C3:C12, "70,000")</li>
+          <li class="formula f-average">
+            <img src="images/AVERAGE(B2+D2).svg" alt="AVERAGE formula decor" />
+          </li>
+          <li class="formula f-layer">
+            <img src="images/Layer_1.svg" alt="Layer formula decor" />
+          </li>
+        </ul>
 
-      <div class="container hero-wrapper">
-        <div class="content-block">
-          <div class="logo">
-  <img src="images/logo.svg" alt="GO IT Logo">
-</div>
-          <div class="status-tags">
-            <span class="tag tag-first"><span>Безоплатний вебінар</span></span>
-            <span class="tag tag-bordered">Старт: <span>  10 січня 19:30</span></span>
+        <div class="container hero-wrapper">
+          <div class="content-block">
+            <div class="logo">
+              <img src="images/logo.svg" alt="GO IT Logo" />
+            </div>
+            <div class="status-tags">
+              <span class="tag tag-first"
+                ><span>Безоплатний вебінар</span></span
+              >
+              <span class="tag tag-bordered"
+                >Старт: <span> 10 січня 19:30</span></span
+              >
+            </div>
+            <h1>Навчіться створювати Excel-таблиці на pro-рівні</h1>
+            <p class="description">
+              Опануйте функціонал Microsoft Excel, автоматизуйте свою роботу та
+              створюйте таблиці швидко і в задоволення
+            </p>
+
+            <div class="mobile-short-form">
+              <h3>Реєструйся просто зараз</h3>
+              <div class="countdown">
+                <div class="unit">
+                  <span class="days">00</span><label>днів</label>
+                </div>
+                <span class="divider">:</span>
+                <div class="unit">
+                  <span class="hours">00</span><label>годин</label>
+                </div>
+                <span class="divider">:</span>
+                <div class="unit">
+                  <span class="minutes">00</span><label>хвилин</label>
+                </div>
+                <span class="divider">:</span>
+                <div class="unit seconds-green">
+                  <span class="seconds">00</span><label>секунд</label>
+                </div>
+              </div>
+              <button id="openModalBtn" class="submit-btn">
+                Зареєструватися
+              </button>
+            </div>
           </div>
-          <h1>Навчіться створювати Excel-таблиці на pro-рівні</h1>
-          <p class="description">
-            Опануйте функціонал Microsoft Excel, автоматизуйте свою роботу та
-            створюйте таблиці швидко і в задоволення
-          </p>
-          <button
-            id="openModalBtn"
-            class="submit-btn"
-            style="width: auto; padding: 15px 30px; margin-top: 20px"
-          >
-            Зареєструватися (модалка)
+
+          <div class="form-block" id="main-form-slot"></div>
+        </div>
+      </div>
+    </section>
+
+    <div id="modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="logo">
+            <img src="images/logo.svg" alt="GO IT Logo" />
+          </div>
+
+          <button id="closeBtn" class="close-btn" aria-label="Закрити">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24.7071 8.70711C25.0976 8.31658 25.0976 7.68342 24.7071 7.29289C24.3166 6.90237 23.6834 6.90237 23.2929 7.29289L16 14.5858L8.70711 7.29289C8.31658 6.90237 7.68342 6.90237 7.29289 7.29289C6.90237 7.68342 6.90237 8.31658 7.29289 8.70711L14.5858 16L7.29289 23.2929C6.90237 23.6834 6.90237 24.3166 7.29289 24.7071C7.68342 25.0976 8.31658 25.0976 8.70711 24.7071L16 17.4142L23.2929 24.7071C23.6834 25.0976 24.3166 25.0976 24.7071 24.7071C25.0976 24.3166 25.0976 23.6834 24.7071 23.2929L17.4142 16L24.7071 8.70711Z"
+                fill="#1B1B1B"
+              />
+            </svg>
           </button>
         </div>
 
-       <div class="form-block" id="main-form-slot"></div>
-      </div>
-      
-    </section>
-
-    <div id="modal" class="modal-overlay" style="display: none">
-      <div class="modal-content">
-        <button id="closeBtn" class="close-btn">&times;</button>
         <div id="modal-form-slot"></div>
       </div>
     </div>
 
-   <template id="form-template">
-  <form class="reg-form"> <h3>Реєструйся просто зараз</h3>
+    <template id="form-template">
+      <form class="reg-form">
+        <h3>Реєструйся просто зараз</h3>
 
-    <div class="countdown">
-      <div class="unit"><span class="days">00</span><label>днів</label></div>
-      <span class="divider">:</span>
-      <div class="unit"><span class="hours">00</span><label>годин</label></div>
-      <span class="divider">:</span>
-      <div class="unit"><span class="minutes">00</span><label>хвилин</label></div>
-      <span class="divider">:</span>
-      <div class="unit seconds-green"><span class="seconds">00</span><label>секунд</label></div>
-    </div> <div class="input-group">
-      <input type="text" name="name" placeholder="Введіть своє ім’я" />
-      <input type="email" name="email" placeholder="Введіть свій E-mail" />
-      <div class="phone-wrapper">
-        <img src="images/flag.svg" alt="flag" class="flag-svg">
-        <input type="tel" name="phone" placeholder="+380 95 -- -- ---" />
-      </div>
-    </div>
+        <div class="countdown">
+          <div class="unit">
+            <span class="days">00</span><label>днів</label>
+          </div>
+          <span class="divider">:</span>
+          <div class="unit">
+            <span class="hours">00</span><label>годин</label>
+          </div>
+          <span class="divider">:</span>
+          <div class="unit">
+            <span class="minutes">00</span><label>хвилин</label>
+          </div>
+          <span class="divider">:</span>
+          <div class="unit seconds-green">
+            <span class="seconds">00</span><label>секунд</label>
+          </div>
+        </div>
 
-    <label class="checkbox-container">
-      <input type="checkbox" name="agree" />
-      <span class="checkmark"></span>
-      <span class="text">Згоден з <a href="#">Політикою конфіденційності</a> та <a href="#">Умови користування послугами</a></span>
-    </label>
+        <div class="input-group">
+          <input type="text" name="name" placeholder="Введіть своє ім’я" />
+          <input type="email" name="email" placeholder="Введіть свій E-mail" />
+          <div class="phone-wrapper">
+            <img src="images/flag.svg" alt="flag" class="flag-svg" />
+            <input type="tel" name="phone" placeholder="+380 95 -- -- ---" />
+          </div>
+        </div>
 
-    <button type="submit" class="submit-btn">Зареєструватися</button>
-  </form> </template>
+        <label class="checkbox-container">
+          <input type="checkbox" name="agree" />
+          <span class="checkmark"></span>
+          <span class="text"
+            >Згоден з <a href="#">Політикою конфіденційності</a> та
+            <a href="#">Умови користування послугами</a></span
+          >
+        </label>
+
+        <button type="submit" class="submit-btn">Зареєструватися</button>
+      </form>
+    </template>
 
     <script src="script.js"></script>
   </body>

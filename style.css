@@ -67,7 +67,7 @@ body {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 112px;
-  position: relative; /* Чтобы форма-абсолют была внутри */
+  position: relative;
 }
 
 .hero-wrapper {
@@ -136,8 +136,6 @@ h1,
   font-family: var(--font-main);
 }
 
-/* Базовый стиль для всех 4 квадратов */
-
 .tag::before,
 .tag::after,
 .tag span::before,
@@ -155,8 +153,6 @@ h1,
   z-index: 10;
 }
 
-/* --- ЛЕВЫЕ УГЛЫ (привязаны к .tag) --- */
-
 .tag::before {
   top: -2.2px;
 
@@ -168,10 +164,6 @@ h1,
 
   left: -2.2px;
 }
-
-/* --- ПРАВЫЕ УГЛЫ (привязаны к ПРАВОМУ краю .tag) --- */
-
-/* Мы используем span, но заставляем его псевдоэлементы прыгнуть в правый угол родителя */
 
 .tag span::before {
   top: -2.2px;
@@ -230,7 +222,7 @@ h1 {
 .text a {
   color: #3577f7;
 
-  text-decoration: none; /* Убирает подчеркивание */
+  text-decoration: none;
 }
 
 .reg-form {
@@ -240,11 +232,9 @@ h1 {
 
   width: 488px;
 
-  padding: 52px; /* Внутренние отступы как в Figma */
+  padding: 52px;
 
   box-shadow: 0 0 20px 0 rgba(15, 124, 65, 0.2);
-
-  /* Чтобы содержимое (таймер, инпуты) распределялось красиво */
 
   display: flex;
 
@@ -415,11 +405,11 @@ h1 {
 
   pointer-events: auto !important;
 
-  z-index: 999; /* Вытаскиваем его на самый верх */
+  z-index: 999;
 }
 
 .checkbox-container input {
-  appearance: none; /* Убираем стандартный синий стиль */
+  appearance: none;
 
   -webkit-appearance: none;
 
@@ -427,9 +417,7 @@ h1 {
 
   height: 16px;
 
-  border: 1px solid #0f7c41; /* Зелена рамка з макета */
-
-  /* ЦЕ РОБИТЬ ЙОГО ПРОЗОРИМ, ЯК НА МАКЕТІ */
+  border: 1px solid #0f7c41;
 
   background-color: transparent !important;
 
@@ -442,15 +430,9 @@ h1 {
 
 .checkbox-container input:checked {
   background-color: transparent !important;
-
-  /* ЗЕЛЕНА ГАЛОЧКА через SVG (fill='%230f7c41') */
-
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230f7c41'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
-
   background-size: 12px;
-
   background-repeat: no-repeat;
-
   background-position: center;
 }
 
@@ -496,61 +478,37 @@ h1 {
   pointer-events: none;
 }
 
-/* --- 5. ДЕКОР --- */
-
 .vector-decor {
   position: absolute;
-
-  /* Используем размеры самого SVG файла, чтобы рамка была "в облипку" */
-
   width: 98px;
-
   height: 57px;
-
-  /* Твои вычисленные координаты из Figma */
-
   left: 650px;
-
   top: 547px;
-
   z-index: 5;
-
-  /* Убираем overflow: hidden, он больше не нужен */
 }
 
 .arrow-svg {
-  /* Растягиваем картинку на весь контейнер 98x57 */
-
   width: 100% !important;
-
   height: 100% !important;
-
   display: block;
-
-  /* УБИРАЕМ: transform, rotate и transform-origin */
-
-  /* Твой SVG уже наклонен внутри файла, поэтому здесь просто 0 */
-
   transform: none;
 }
 
 .hero-decor-img {
   position: absolute;
 
-  bottom: 0; /* Прижимаем к низу */
+  bottom: 0;
 
-  right: 0; /* Прижимаем к правому краю */
+  right: 0;
 
   width: 312px;
 
   height: 240px;
 
-  z-index: 1; /* Самый нижний слой декора */
+  z-index: 1;
 
   pointer-events: none;
 }
-
-/* Формулы должны быть выше картинки */
 
 .formula {
   position: absolute;
@@ -559,15 +517,11 @@ h1 {
 }
 
 .formula-list li {
-  /* 2. Чтобы браузер не считал его высоту как блок */
-
   height: auto;
 
-  position: absolute; /* Все формулы будут летать */
+  position: absolute;
 
   list-style: none;
-
-  /* 3. Гарантия, что лишние углы не создадут скролл */
 }
 
 .formula-list {
@@ -579,7 +533,7 @@ h1 {
 
   margin: 0;
 
-  position: absolute; /* Список должен лежать поверх декора, не создавая высоты */
+  position: absolute;
 
   inset: 0;
 
@@ -587,16 +541,10 @@ h1 {
 }
 
 .f-average {
-  position: absolute; /* Значно лівіше: з 22% ставимо 13-14%, щоб потрапити під "створювати" */
+  position: absolute;
 
   left: 17%;
-
-  /* Вище: піднімаємо до 32%, щоб формула була на рівні останнього рядка опису */
-
   bottom: 8%;
-
-  /* Чіткий розмір з макета */
-
   width: 223px;
 
   transform: none !important;
@@ -616,23 +564,11 @@ h1 {
 
 .f-layer {
   position: absolute;
-
-  /* Значно лівіше: з 22% ставимо 13-14%, щоб потрапити під "створювати" */
-
   left: 0%;
-
-  /* Вище: піднімаємо до 32%, щоб формула була на рівні останнього рядка опису */
-
   bottom: 4%;
-
-  /* Чіткий розмір з макета */
-
   height: 46.15px;
-
   transform: none !important;
-
   z-index: 3;
-
   pointer-events: none;
 }
 
@@ -645,65 +581,40 @@ h1 {
 }
 
 .f-min {
-  /* 1. Оживляем ширину и высоту */
-
   display: inline-block;
-
   position: absolute;
-
-  /* 2. Твои точные данные из Figma */
-
   top: 40px;
 
   left: 543px;
 
-  width: max-content; /* Вместо 176px, чтобы рамка была только по тексту */
+  width: max-content;
 
   height: auto;
 
   /* 3. Оформление */
-
   color: #bfdbcc;
-
   font-family: var(--font-main);
-
   font-style: italic;
-
   font-weight: 500;
-
   font-size: 20px;
-
   line-height: 140%;
-
   white-space: nowrap;
-
-  /* 4. Поворот (минус для наклона влево) */
-
   transform: rotate(16deg);
-
   transform-origin: left center;
-
-  /* 5. Безопасность */
-
   z-index: 5;
-
-  pointer-events: none; /* Чтобы формула не мешала кликать по кнопкам */
+  pointer-events: none;
 }
 
 .f-sum-ab {
-  /* Координаты из макета */
-
   left: 630px;
 
   top: 732px;
-
-  /* Размеры четко как в Figma */
 
   width: 127px;
 
   z-index: 5;
 
-  pointer-events: none; /* Чтобы не мешало кликать по форме */
+  pointer-events: none;
 }
 
 .f-sum-ab img {
@@ -712,8 +623,6 @@ h1 {
   height: 100%;
 
   display: block;
-
-  /* Поворот больше НЕ НУЖЕН, он уже внутри SVG */
 }
 
 .f-sumif {
@@ -741,14 +650,12 @@ h1 {
 .sq {
   position: absolute;
 
-  background-color: #0f7c41; /* Тот самый зеленый из Figma */
+  background-color: #0f7c41;
 
   z-index: 2;
 
   pointer-events: none;
 }
-
-/* Размеры */
 
 .sq-sm {
   width: 10px;
@@ -795,14 +702,15 @@ h1 {
 /* --- 6. МОДАЛКА --- */
 
 .modal-overlay {
-  display: none !important;
+  display: none;
 
   position: fixed;
 
   inset: 0;
 
   background: rgba(0, 0, 0, 0.7);
-
+  width: 100%;
+  height: 100%;
   z-index: 1000;
 
   justify-content: center;
@@ -814,8 +722,14 @@ h1 {
 
 .modal-content {
   position: relative;
-
   width: 100%;
+  max-width: 360px;
+  background: #fff;
+  box-shadow: 0 0 20px 0 rgba(15, 124, 65, 0.2);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .close-modal {
@@ -838,36 +752,43 @@ h1 {
 
 /* --- 7. АДАПТИВНОСТЬ --- */
 @media (max-width: 767px) {
-  /* Все стили ниже сработают ТОЛЬКО если экран меньше 767px */
-
+  #main-form-slot {
+    display: none !important;
+  }
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
-  }
-
-  #main-form-slot {
-    display: none !important; /* Спрячется только на мобилке */
+    padding: 20px 20px 40px;
+    align-items: center;
+    text-align: left;
   }
 
   #openModalBtn {
-    display: block !important; /* Появится только на мобилке */
-    margin: 30px auto;
-    width: 100%;
-    max-width: 320px;
+    margin-bottom: 0;
+    display: block !important;
   }
-
   h1 {
+    font-weight: 700;
     font-size: 32px;
-    width: 100%;
-    text-align: center;
+    line-height: 125%;
+    text-align: left;
   }
-
+  h3 {
+    margin-bottom: 24px;
+  }
+  .logo {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .hero-decor-img {
+    width: 168px;
+    height: 148px;
+  }
   .content-block {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
   }
 
   .formula-list,
@@ -875,4 +796,226 @@ h1 {
   .sq {
     display: none;
   }
-} /* <--- ЭТА СКОБКА ЗАКРЫВАЕТ МЕДИА-ЗАПРОС */
+}
+@media (max-width: 1320px) {
+  .status-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: 36px;
+    line-height: 122%;
+    width: 336px;
+    height: 176px;
+  }
+  .hero-decor-img {
+    width: 188px;
+    height: 144px;
+  }
+  .container {
+    padding: 29px 32px 0;
+  }
+  .reg-form {
+    padding: 32px 20px;
+    width: 336px;
+    height: 518px;
+  }
+  .form-block {
+    top: 81px;
+    right: 32px;
+
+    width: 336px;
+    height: 518px;
+  }
+  .submit-btn {
+    height: 56px;
+  }
+  h3 {
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    line-height: 140% !important;
+  }
+  .content-block {
+    width: 336px;
+    height: 176px;
+  }
+  .description {
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+
+.mobile-short-form {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-short-form {
+    display: block;
+    background: #fff;
+    padding: 32px 20px;
+    width: 320px;
+    height: 242px;
+    box-shadow: 0 0 20px 0 rgba(15, 124, 65, 0.2);
+    margin-top: 24px;
+    text-align: center;
+  }
+  .mobile-short-form .submit-btn {
+    width: 100% !important;
+  }
+
+  #main-form-slot {
+    display: none !important;
+  }
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+
+    padding: 32px 20px;
+
+    backdrop-filter: blur(100px);
+  }
+  .modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 360px;
+
+    position: relative;
+    padding: 20px 0;
+  }
+}
+
+.mobile-short-form {
+  position: relative !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+#openModalBtn {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.modal-overlay {
+  z-index: 10000 !important;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+#closeBtn {
+  position: static !important;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--dark);
+}
+#modal-form-slot .reg-form {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+#modal-form-slot .reg-form h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+#modal-form-slot .reg-form {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+#modal-form-slot .input-group,
+#modal-form-slot .input-group input {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: #fff;
+  width: 100%;
+  max-width: 360px;
+  padding: 32px 24px !important;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box !important;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.modal-header .logo {
+  margin: 0 !important;
+}
+
+#closeBtn {
+  position: static !important;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+}
+
+#modal-form-slot .reg-form {
+  width: 100% !important;
+  padding: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+
+#modal-form-slot .input-group,
+#modal-form-slot .input-group input,
+#modal-form-slot .phone-wrapper,
+#modal-form-slot .submit-btn {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#modal-form-slot h3 {
+  font-size: 22px !important;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.close-modal {
+  display: none !important;
+}
