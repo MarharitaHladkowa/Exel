@@ -1019,3 +1019,37 @@ h1 {
 .close-modal {
   display: none !important;
 }
+/* --- ЕКСТРЕНИЙ ФІКС ДЛЯ МОБІЛОК --- */
+@media (max-width: 480px) {
+  .mobile-short-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px !important;
+    gap: 10px !important;
+  }
+
+  .mobile-short-form h3 {
+    font-size: 18px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .mobile-short-form .countdown {
+    transform: scale(0.85); /* Трохи зменшуємо таймер, щоб звільнити місце */
+    margin: 5px 0 !important;
+  }
+
+  .mobile-short-form .submit-btn {
+    width: 100% !important;
+    padding: 12px !important; /* Робимо кнопку трохи компактнішою */
+    font-size: 16px !important;
+    margin-top: 10px !important;
+  }
+
+  /* Переконайся, що секція hero не обрізає контент */
+  .hero {
+    height: auto !important;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+}
